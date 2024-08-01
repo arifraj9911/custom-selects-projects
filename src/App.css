@@ -3,6 +3,7 @@
   width: full;
   display: flex;
   justify-content: center;
-  min-height: 50vh;
+  min-height: 80vh;
   align-items: center;
+  /* border: 2px solid rgb(218, 118, 18); */
 }

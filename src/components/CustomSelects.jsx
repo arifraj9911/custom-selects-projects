@@ -1,63 +1,31 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+// import { useState } from "react";
 import "./CustomSelects.css";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 
-const CustomSelects = ({ options, placeholder }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectValue, setSelectValue] = useState(null);
-  const [multipleSelected, setMultipleSelected] = useState([]);
-  const [checked, setChecked] = useState(false);
-  const [isMulti, setIsMulti] = useState(false);
-  //   const [isDisabled,setIsDisabled] = useState()
-
-  //   console.log(checked)
-
-  const handleSelectValue = (e) => {
-    // console.log(e.target.innerText)
-    setSelectValue(e.target.innerText);
-  };
-
-  const handleDeleteSelect = () => {
-    setSelectValue(placeholder[0]);
-  };
-
-  const handleChecked = () => {
-    setChecked(!checked);
-    // console.log(checked)
-  };
-
-  //   let isMulti = true;
-  const handleMultiSelect = (e) => {
-    if (isMulti) {
-      const newSelected = [...multipleSelected, e.target.innerText];
-      setMultipleSelected(newSelected);
-    }
-  };
-
-  const handleIsMulti = () => {
-    // console.log('clicked')
-    setIsMulti(!isMulti);
-  };
-
-  const handleMultiDelete = () => {
-    // console.log('delete');
-    // console.log(multipleSelected);
-    // const deleteSelected = multipleSelected.length-1;
-    multipleSelected.pop(multipleSelected.length - 1);
-    setMultipleSelected([...multipleSelected]);
-    // console.log(newSelected)
-  };
-
-  //   const handleTypingClick = () => {
-  //     setIsOpen(!isOpen);
-  //     console.log(isOpen);
-  //   };
-  // console.log(multipleSelected);
+const CustomSelects = ({
+  options,
+  placeholder,
+  selectValue,
+  handleSelectValue,
+  handleDeleteSelect,
+  handleChecked,
+  checked,
+  handleMultiSelect,
+  multipleSelected,
+  handleIsMulti,
+  isMulti,
+  handleMultiDelete,
+  isOpen,
+  setIsOpen,
+}) => {
   return (
     <div className="kzui-custom_container">
-      <h1 className="kzui-custom_heading">Custom Selects Options</h1>
+      <h1 className="kzui-custom_heading">
+        Custom Select{" "}
+        <span className="kzui-custom_heading_components_title">Components</span>{" "}
+      </h1>
       <div
         onClick={() => {
           //   handleTypingClick();
