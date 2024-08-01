@@ -7,6 +7,10 @@ import { FaDeleteLeft } from "react-icons/fa6";
 const CustomSelects = ({ options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectValue, setSelectValue] = useState("Select value");
+  const [checked, setChecked] = useState(false);
+  //   const [isDisabled,setIsDisabled] = useState()
+
+  //   console.log(checked)
 
   const handleSelectValue = (e) => {
     // console.log(e.target.innerText)
@@ -17,10 +21,17 @@ const CustomSelects = ({ options }) => {
     setSelectValue("Select value");
   };
 
+  const handleChecked = () => {
+    setChecked(!checked);
+    // console.log(checked)
+  };
   return (
     <div className="kzui-custom_container">
       <h1 className="kzui-custom_heading">Custom Selects Options</h1>
-      <div onClick={() => setIsOpen(!isOpen)} className="kzui-select_container">
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className={`kzui-select_container ${checked && "kzui-select_disabled"}`}
+      >
         <span className="kzui-select_title">
           {selectValue}
 
@@ -41,6 +52,16 @@ const CustomSelects = ({ options }) => {
             className="kzui-clear_select_icon"
             onClick={handleDeleteSelect}
           ></FaDeleteLeft>
+        </span>
+        <span className="kzui-disabled_select">
+          Disabled
+          <input
+            value={checked}
+            onChange={handleChecked}
+            type="checkbox"
+            name="check"
+            id=""
+          />
         </span>
       </div>
     </div>

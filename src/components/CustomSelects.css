@@ -38,3 +38,12 @@
 .kzui-clear_select_icon {
   cursor: pointer;
 }
+.kzui-disabled_select {
+  display: block;
+  display: flex;
+  justify-content: start;
+}
+.kzui-select_disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
