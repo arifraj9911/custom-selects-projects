@@ -4,7 +4,7 @@ import "./CustomSelects.css";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 
-const CustomSelects = ({ options }) => {
+const CustomSelects = ({ options, placeholder }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectValue, setSelectValue] = useState(null);
   const [multipleSelected, setMultipleSelected] = useState([]);
@@ -20,7 +20,7 @@ const CustomSelects = ({ options }) => {
   };
 
   const handleDeleteSelect = () => {
-    setSelectValue("Select Value");
+    setSelectValue(placeholder[0]);
   };
 
   const handleChecked = () => {
@@ -60,14 +60,14 @@ const CustomSelects = ({ options }) => {
         <span className="kzui-select_title">
           {isMulti ? (
             multipleSelected.length === 0 ? (
-              "Select Multiple Values"
+              placeholder[1]
             ) : (
               multipleSelected?.map((selectItem, index) => (
                 <span key={index}>{selectItem}</span>
               ))
             )
           ) : selectValue === null ? (
-            "Select value"
+            placeholder[0]
           ) : (
             <span>{selectValue}</span>
           )}
@@ -92,6 +92,10 @@ const CustomSelects = ({ options }) => {
           ))}
       </div>
       <div>
+        <span className="kzui-search_selected">
+          <input type="text" name="" placeholder="search item..." id="" />
+          <button>Search</button>
+        </span>
         <span className="kzui-clear_selected">
           Clear Selected
           <FaDeleteLeft

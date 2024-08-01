@@ -47,6 +47,24 @@
   text-decoration: none;
   list-style-type: none;
 }
+.kzui-search_selected{
+    margin: 10px 0;
+}
+.kzui-search_selected input[type="text"]{
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-radius: 6px 0 0 6px;
+    
+    background: rgb(222, 222, 222);
+}
+.kzui-search_selected button{
+    border: none;
+    background: rgb(218, 118, 18);
+    color: white;
+    cursor: pointer;
+    border-radius: 0 6px 6px 0;
+}
 .kzui-clear_selected {
   margin-top: 20px;
   display: flex;
@@ -56,7 +74,7 @@
 .kzui-clear_select_icon {
   cursor: pointer;
 }
-.kzui-disabled_select,.kzui-is_multi {
+.kzui-disabled_select,.kzui-is_multi,.kzui-search_selected {
   display: block;
   display: flex;
   justify-content: start;

@@ -12,9 +12,11 @@ function App() {
     { value: "Mango", label: "Mango" },
   ];
 
+  const placeholder = ['Select Value','Select Multiple Values']
+
   return (
     <div className='kzui-app_container'>
-      <CustomSelects options={options}></CustomSelects>
+      <CustomSelects options={options} placeholder={placeholder}></CustomSelects>
     </div>
   )
 }
