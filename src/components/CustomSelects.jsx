@@ -49,12 +49,20 @@ const CustomSelects = ({ options, placeholder }) => {
     setMultipleSelected([...multipleSelected]);
     // console.log(newSelected)
   };
+
+  //   const handleTypingClick = () => {
+  //     setIsOpen(!isOpen);
+  //     console.log(isOpen);
+  //   };
   // console.log(multipleSelected);
   return (
     <div className="kzui-custom_container">
       <h1 className="kzui-custom_heading">Custom Selects Options</h1>
       <div
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          //   handleTypingClick();
+          setIsOpen(!isOpen);
+        }}
         className={`kzui-select_container ${checked && "kzui-select_disabled"}`}
       >
         <span className="kzui-select_title">
@@ -84,6 +92,7 @@ const CustomSelects = ({ options, placeholder }) => {
         {isOpen &&
           options?.map((item, index) => (
             <ul
+              className="kzui-select_item_ul"
               onClick={isMulti ? handleMultiSelect : handleSelectValue}
               key={index}
             >
@@ -92,10 +101,20 @@ const CustomSelects = ({ options, placeholder }) => {
           ))}
       </div>
       <div>
-        <span className="kzui-search_selected">
-          <input type="text" name="" placeholder="search item..." id="" />
-          <button>Search</button>
-        </span>
+        {isMulti
+          ? multipleSelected.length > 0 && (
+              <span className="kzui-search_selected">
+                <input type="text" name="" placeholder="search item..." id="" />
+                <button>Search</button>
+              </span>
+            )
+          : selectValue === null && (
+              <span className="kzui-search_selected">
+                <input type="text" name="" placeholder="search item..." id="" />
+                <button>Search</button>
+              </span>
+            )}
+
         <span className="kzui-clear_selected">
           Clear Selected
           <FaDeleteLeft
