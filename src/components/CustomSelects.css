@@ -14,7 +14,7 @@
 }
 .kzui-select_container {
   border: 1px solid gray;
-  padding: 12px;
+  padding: 10px;
   border-radius: 6px;
   cursor: pointer;
   text-align: left;
@@ -36,6 +36,12 @@
 .kzui-dropdwon_arrow {
   position: absolute;
   right: 0;
+  top: 1px;
+}
+.kzui-dropdwon_arrow_open {
+  position: absolute;
+  right: 0;
+  top: 8px;
 }
 .kzui-select_list_item {
   text-decoration: none;
@@ -50,7 +56,7 @@
 .kzui-clear_select_icon {
   cursor: pointer;
 }
-.kzui-disabled_select {
+.kzui-disabled_select,.kzui-is_multi {
   display: block;
   display: flex;
   justify-content: start;

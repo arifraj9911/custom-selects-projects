@@ -6,11 +6,10 @@ import { FaDeleteLeft } from "react-icons/fa6";
 
 const CustomSelects = ({ options }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectValue, setSelectValue] = useState("Select value");
-  const [multipleSelected, setMultipleSelected] = useState(
-    [] || "Select value"
-  );
+  const [selectValue, setSelectValue] = useState(null);
+  const [multipleSelected, setMultipleSelected] = useState([]);
   const [checked, setChecked] = useState(false);
+  const [isMulti, setIsMulti] = useState(false);
   //   const [isDisabled,setIsDisabled] = useState()
 
   //   console.log(checked)
@@ -21,7 +20,7 @@ const CustomSelects = ({ options }) => {
   };
 
   const handleDeleteSelect = () => {
-    setSelectValue("Select value");
+    setSelectValue("Select Value");
   };
 
   const handleChecked = () => {
@@ -29,14 +28,28 @@ const CustomSelects = ({ options }) => {
     // console.log(checked)
   };
 
-  let isMulti = true;
+  //   let isMulti = true;
   const handleMultiSelect = (e) => {
     if (isMulti) {
       const newSelected = [...multipleSelected, e.target.innerText];
       setMultipleSelected(newSelected);
     }
   };
-  //   console.log(multipleSelected);
+
+  const handleIsMulti = () => {
+    // console.log('clicked')
+    setIsMulti(!isMulti);
+  };
+
+  const handleMultiDelete = () => {
+    // console.log('delete');
+    // console.log(multipleSelected);
+    // const deleteSelected = multipleSelected.length-1;
+    multipleSelected.pop(multipleSelected.length - 1);
+    setMultipleSelected([...multipleSelected]);
+    // console.log(newSelected)
+  };
+  // console.log(multipleSelected);
   return (
     <div className="kzui-custom_container">
       <h1 className="kzui-custom_heading">Custom Selects Options</h1>
@@ -45,11 +58,27 @@ const CustomSelects = ({ options }) => {
         className={`kzui-select_container ${checked && "kzui-select_disabled"}`}
       >
         <span className="kzui-select_title">
-          {isMulti
-            ? multipleSelected.map((selectItem,index) => <span key={index}>{selectItem}</span> )
-            : selectValue}
+          {isMulti ? (
+            multipleSelected.length === 0 ? (
+              "Select Multiple Values"
+            ) : (
+              multipleSelected?.map((selectItem, index) => (
+                <span key={index}>{selectItem}</span>
+              ))
+            )
+          ) : selectValue === null ? (
+            "Select value"
+          ) : (
+            <span>{selectValue}</span>
+          )}
 
-          <FaArrowAltCircleDown className="kzui-dropdwon_arrow"></FaArrowAltCircleDown>
+          <FaArrowAltCircleDown
+            className={`${
+              multipleSelected.length > 0 || selectValue !== null
+                ? "kzui-dropdwon_arrow_open"
+                : "kzui-dropdwon_arrow"
+            } `}
+          ></FaArrowAltCircleDown>
         </span>
 
         {isOpen &&
@@ -67,7 +96,7 @@ const CustomSelects = ({ options }) => {
           Clear Selected
           <FaDeleteLeft
             className="kzui-clear_select_icon"
-            onClick={handleDeleteSelect}
+            onClick={isMulti ? handleMultiDelete : handleDeleteSelect}
           ></FaDeleteLeft>
         </span>
         <span className="kzui-disabled_select">
@@ -75,6 +104,16 @@ const CustomSelects = ({ options }) => {
           <input
             value={checked}
             onChange={handleChecked}
+            type="checkbox"
+            name="check"
+            id=""
+          />
+        </span>
+        <span className="kzui-is_multi">
+          isMulti
+          <input
+            value={checked}
+            onChange={handleIsMulti}
             type="checkbox"
             name="check"
             id=""
