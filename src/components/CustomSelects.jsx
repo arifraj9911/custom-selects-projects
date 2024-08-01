@@ -7,6 +7,9 @@ import { FaDeleteLeft } from "react-icons/fa6";
 const CustomSelects = ({ options }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectValue, setSelectValue] = useState("Select value");
+  const [multipleSelected, setMultipleSelected] = useState(
+    [] || "Select value"
+  );
   const [checked, setChecked] = useState(false);
   //   const [isDisabled,setIsDisabled] = useState()
 
@@ -25,6 +28,15 @@ const CustomSelects = ({ options }) => {
     setChecked(!checked);
     // console.log(checked)
   };
+
+  let isMulti = true;
+  const handleMultiSelect = (e) => {
+    if (isMulti) {
+      const newSelected = [...multipleSelected, e.target.innerText];
+      setMultipleSelected(newSelected);
+    }
+  };
+  //   console.log(multipleSelected);
   return (
     <div className="kzui-custom_container">
       <h1 className="kzui-custom_heading">Custom Selects Options</h1>
@@ -33,15 +45,20 @@ const CustomSelects = ({ options }) => {
         className={`kzui-select_container ${checked && "kzui-select_disabled"}`}
       >
         <span className="kzui-select_title">
-          {selectValue}
+          {isMulti
+            ? multipleSelected.map((selectItem,index) => <span key={index}>{selectItem}</span> )
+            : selectValue}
 
-          <FaArrowAltCircleDown></FaArrowAltCircleDown>
+          <FaArrowAltCircleDown className="kzui-dropdwon_arrow"></FaArrowAltCircleDown>
         </span>
 
         {isOpen &&
           options?.map((item, index) => (
-            <ul onClick={handleSelectValue} key={index}>
-              <li className="kzui-select_list_item">{item.label}</li>
+            <ul
+              onClick={isMulti ? handleMultiSelect : handleSelectValue}
+              key={index}
+            >
+              <li className="kzui-select_list_item">{item.label} </li>
             </ul>
           ))}
       </div>

@@ -21,9 +21,21 @@
 }
 
 .kzui-select_title {
-  font-size: 20px;
+  font-size: 16px;
+  position: relative;
+  margin-right: 10px;
+  gap: 6px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+}
+.kzui-select_title > span {
+  background: rgb(199, 199, 199);
+  padding: 6px;
+  border-radius: 10px;
+}
+.kzui-dropdwon_arrow {
+  position: absolute;
+  right: 0;
 }
 .kzui-select_list_item {
   text-decoration: none;
